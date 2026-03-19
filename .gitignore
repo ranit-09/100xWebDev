@@ -1,0 +1,52 @@
+.DS_Store
+node_modules
+/solution
+
+# Node.js dependencies
+
+node_modules/
+
+# Environment variables
+
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# macOS system files
+
+.DS_Store
+
+# Windows system files
+
+Thumbs.db
+
+# Coverage reports
+
+coverage/
+
+# Build folders
+
+dist/
+build/
+
+# Temporary files
+
+tmp/
+temp/
+
+# Editor folders
+
+.vscode/
+.idea/
+
+# OS generat
