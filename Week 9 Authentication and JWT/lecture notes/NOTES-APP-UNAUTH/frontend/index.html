@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+    <div style = "display:flex ; justify-content: space-between; padding:100px 100px">
+        <div id="notes">
+            Loading...
+        </div>
+        <div>
+            <input id="userNote" type="text">
+            <button onclick=addTodo()>Create new Token</button>
+        </div>
+    </div>
+    <script>
+        async function addTodo(){
+            await axios.post("http://localhost:3000/notes",
+            {note :document.getElementById("userNote").value})
+
+            // show the todo in the frontend
+            const newNode = document.createElement("div");
+            newNode.innerHTML = document.getElementById("userNote").value;
+            newNode.setAttribute("style","padding: 10px; border: 2px solid black; margin: 10px")
+            document.getElementById("notes").appendChild(newNode);
+
+            // make the input box empty again
+            document.getElementById("userNote").value = ""
+        }
+
+        async function getTodo(){
+            const response = await axios("http://localhost:3000/notes")
+            const notes = response.data.notes
+            document.getElementById("notes").innerHTML="" //removes loading...
+            for(let i = 0 ; i< notes.length ; i++){
+                const noteNote = document.createElement("div")
+                noteNote.innerHTML = notes[i]
+                noteNote.setAttribute("style", "padding: 10px; border: 2px solid black; margin: 10px;")
+                document.getElementById("notes").appendChild(noteNote)
+            }
+        }
+        getTodo()
+    </script>
+</body>
+</html>
